@@ -8,13 +8,13 @@
 
 int main()
 {
-	int i, N, sum = 0, k = 0;
+	int i = 0, N, sum = 0, k = 0;
 	float arifm = 0;
 	printf("Input size of array N: ");
 	scanf("%d", &N);				// размерность массива
 
 	while ((N < 1) or (N > 20)) {
-		printf("Input another size of array: ")
+		printf("Input another size of array: ");
 		scanf("%d", &N);
 	}
 
