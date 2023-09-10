@@ -1,0 +1,134 @@
+// Дана строка. Написать программу,котораязаменяет строчную букву перед точкой 
+// на заглавную, а заглавную букву перед запятой на строчную. 
+//AAA,sdsa.asdAAA.sac,asc
+//
+
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//
+//int main() {
+//    printf("Input text string: ");
+//    char ch;
+//    char pCh = ' '; // Предыдущий символ, начальное значение - пробел
+//
+//    while ((ch = getchar()) != '\n)') {
+//        while ((ch != ',' and ch != '.' and ((ch < 65 and ch > 90) or (ch < 97 and ch > 122)))) {
+//            printf("Input text again: ");
+//            
+//        }
+//        
+//        if (ch == '.' && pCh >= 'a' && pCh <= 'z') {
+//            pCh -= 32;  // Преобразуем строчную букву перед точкой в заглавную
+//        }
+//        else if (ch == ',' && pCh >= 'A' && pCh <= 'Z') {
+//            pCh += 32;  // Преобразуем заглавную букву перед запятой в строчную
+//        }
+//        putchar(pCh);
+//        pCh = ch; // Сохраняем текущий символ для последующей проверки
+//    }
+//    
+//}
+
+//#define  _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//
+//int main() {
+//    FILE* SOSMISLOM;
+//    SOSMISLOM = fopen("filefile.txt", "w"); // Открываем файл в режиме записи ("w")
+//
+//    if (SOSMISLOM == NULL) {
+//        printf("Error creating the file\n");
+//        return 1;
+//    }
+//    else {
+//        printf("File created successfully\n");
+//        fprintf(SOSMISLOM, "Writing a code is nice!"); // Записываем текст в файл
+//        fclose(SOSMISLOM); // Закрываем файл
+//    }
+//
+//    // Теперь откроем и выведем содержимое файла
+//    SOSMISLOM = fopen("filefile.txt", "r"); // Открываем файл в режиме чтения ("r")
+//
+//    if (SOSMISLOM == NULL) {
+//        printf("Error opening the file\n");
+//        return 1;
+//    }
+//    else {
+//        printf("File opened successfully\n");
+//
+//        // Считываем и выводим содержимое файла построчно
+//        char line[100];
+//        while (fgets(line, sizeof(line), SOSMISLOM) != NULL) {
+//            printf("%s", line);
+//        }
+//
+//        fclose(SOSMISLOM); // Закрываем файл после использования
+//        return 0;
+//    }
+//}
+
+
+//Код, где переменной присваивается текст из файла 
+//#define  _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//
+//int main() {
+//	FILE *file = fopen("filefile.txt", "r");
+//
+//	if (file == NULL) {
+//		printf("VSE PLOHO");
+//		return 1;
+//	}
+//
+//	char buffer[80];
+//
+//	if ((fgets(buffer, sizeof(buffer), file) != NULL)) {
+//		printf("Read string from file:\n %s ", buffer);
+//	}
+//
+//}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <iostream>
+
+
+int main() {
+	setlocale(LC_ALL,"Russian");
+
+	FILE* file = fopen("emae.txt", "w");
+
+	// Вписываем символ в файл
+	putc('A', file);
+
+	//Вписываем символ в файл только через fputc();
+	fputc('V', file);
+
+	// Получаем первый символ из файла
+	getc(file);
+	// Закрываем файл file
+	fclose(file);
+
+	//Выводим строку через puts();
+	const char *str = "LETSGOOOOO";
+	puts(str);
+
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+	////////////////////////////////////////////
+
+	// Создаём файл для новых действий
+	FILE* exl = fopen("SUDA.txt", "w");
+
+	char buffer[1000];
+	char ch;
+
+	//произваодим запись текста
+	while ((ch = getchar()) != '$') {
+		putc(ch,exl);
+	}
+
+	//Закрываем новый файл "SUDA.txt"
+	fclose(exl);
+
+}
