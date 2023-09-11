@@ -1,0 +1,143 @@
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//#include <iostream>
+//
+////void proverka(int N, int M);
+//
+//
+////void proverka(N, M) {
+////
+////	}
+//
+//
+//void raschet(int l, int c, int k) {
+//	int playField[6][5];
+//
+//	for (int i = 0; i < 6; i++) {					// Объявляем и Заполняем массив
+//		for (int j = 0; j < 5; j++) {
+//			scanf("%d", &playField[i][j]);
+//		}
+//	}
+//	for (int i = 0; i < 5; i++) {
+//		printf("\n");
+//		for (int j = 0; j < 6; j++) {
+//			printf("%d", playField[i][j]);
+//			printf(" ");						// Выводим массив
+//		}
+//	}
+//	int i = 6, j = 0;
+//	
+//	while (j <= 3) {								// Ползаем по табличке
+//		j += 1;
+//		if ((playField[i][j]) > 0){
+//			k += 1;
+//		}
+//	}
+//	for (i = 5; i <= 3; i--) {
+//		if ((playField[i][j]) > 0) {
+//			k += 1;
+//		}
+//	}
+//	for (j = 3; j <= 5; j++) {
+//		if ((playField[i][j]) > 0) {
+//			k += 1;
+//		}
+//	}
+//
+//	printf("%d", k);
+//
+//}
+//
+//
+//
+//int main()
+//{
+//	//int N, M;
+//	//scanf("%d %d", &N, &M);
+//
+//	//while (proverka(N, M) != 0){}
+//	raschet(5,6, 0);
+//}
+
+
+//5-я лаба дан одномерный массив из N элементов. Вычислить количество элементов массива, меньших среднего арифметического всех элементов.
+
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//
+//void pamparam(int Arr[20], int N, int& k, float arif);
+//
+//int vvod(int Arr[20], int& N) {
+//	printf("Input size of array: ");
+//	do {
+//		scanf("%d", &N);
+//	} while (N <= 0 || N > 20);
+//
+//	printf("Input elements: ");
+//	for (int i = 0; i < N; i++) {
+//		scanf("%d", &Arr[i]);
+//	}
+//
+//	return N;
+//}
+//
+//void pamparam(int Arr[20], int N, int& k, float arif) {
+//	k = 0;
+//	for (int i = 0; i < N; i++) {
+//		if (Arr[i] < arif) {
+//			k += 1;
+//		}
+//	}
+//	printf("Result is: %d\n", k);
+//}
+//
+//int main() {
+//	int Arr[20], N, k;
+//	float arif = 0.0, sum = 0.0;
+//
+//	N = vvod(Arr, N);
+//
+//	for (int i = 0; i < N; i++) {
+//		sum += Arr[i];
+//	}
+//	arif = sum / N;
+//
+//	pamparam(Arr, N, k, arif);
+//
+//	return 0;
+//}
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void array_crt(int playField[N][M]);
+void array_check(int N, int M);
+
+void array_input() {
+
+}
+
+int main() {
+	int N, M, playField[20][20];
+
+	printf("Enter size of array: ");
+	
+	do {
+		scanf("%d %d", &N, &M);
+	}
+	while (array_check(N, M) != 0);
+	
+}
+
+
+void array_check(int N, int M) {
+	if ((N >= 2 or N <= 20) && (M >= 2 or M <= 20)) {
+		return 1;
+	}
+	else 
+	{ 
+		printf("Try again \n");
+		return 0; 
+	}
+}
