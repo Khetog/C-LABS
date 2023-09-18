@@ -1,0 +1,171 @@
+//для каждого элемента A(i, j) найти количество выделенных элементов 
+//в выделенной области. Результат представить в виде таблицы. 
+//
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <locale.h>
+#define RED     "\033[0;31m"
+#define RESET   "\033[0m"
+
+
+int check_size(int N, int M);
+void input_array(int arr[7][6], int N, int M);
+void raschet(int N, int M, int playField[20][20], int start_i, int start_j, int* count);
+void result(int count, int pos_i, int pos_j);
+
+int main() {
+
+    int N, M, playField[20][20]; // Размеры поля
+    do {
+        scanf("%d %d", &N, &M);
+    } while (!(check_size(N, M)));
+
+
+
+    // Ввод и заполнение поля
+    input_array(playField, N, M);
+    
+
+    // Вывод начального поля
+    printf("initial field:\n");
+    for (int i = 0; i < N; i++) {
+        printf(" \n");
+        for (int j = 0; j < M; j++) {
+            if (i == 3 && (j > 2 && j <= 5)) {
+                printf("\033[47;1m");
+                printf("| %d |", playField[i][j]);
+                printf("\033[0m");
+            }
+            else if (i > 3 && j == 3) {
+                printf("\033[47;1m");
+                printf("| %d |", playField[i][j]);
+                printf("\033[0m");
+            }
+            else if (i == 6 && (j >= 0 && j <= 3)) {
+                printf("\033[47;1m");
+                printf("| %d |", playField[i][j]);
+                printf("\033[0m");
+            }
+            else {
+                printf("\033[44;1m");
+                printf("| %d |", playField[i][j]);
+                printf("\033[0m");
+            }                                                   //Вывод массива
+        }
+    }
+
+    int start_i, start_j;
+    printf("specify the starting position of the markers  (i and j): ");
+    scanf("%d %d", &start_i, &start_j);
+    int pos_i = start_i;
+    int pos_j = start_j;
+    int count = 0;
+
+    // Подсчет количества удовлетворяющих условию элементов
+    raschet(N, M, playField, start_i, start_j, &count);
+
+    // Вывод результатов
+
+    return 0;
+}
+
+int check_size(int N, int M) {
+    return (N >= 0 && N < 20) && (M >= 0 && M < 20);
+    
+}
+
+void input_array(int arr[20][20], int N, int M) {
+    printf("Input elements of array (7x6):\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+}
+
+void raschet(int N, int M, int playField[7][6], int start_i, int start_j, int* count) {
+    int k = 0;
+
+    for (start_i; start_i < N; start_i++) {
+        printf(" \n");
+        for (int start_j = 0; start_j < M; start_j++) {
+            if (start_i == 3 && (start_j > 2 && start_i <= 5)) {
+                printf("\033[47;1m");
+                printf("| %d |", playField[start_i][start_j]);
+                printf("\033[0m");
+                if (playField[start_i][start_j] > 0) k++;
+            }
+            else if (start_i > 3 && start_j == 3) {
+                printf("\033[47;1m");
+                printf("| %d |", playField[start_i][start_j]);
+                printf("\033[0m");
+                if (playField[start_i][start_j] > 0) k++;
+            }
+            else if (start_i == 6 && (start_j >= 0 && start_j <= 3)) {
+                printf("\033[47;1m");
+                printf("| %d |", playField[start_i][start_j]);
+                printf("\033[0m");
+                if (playField[start_i][start_j] > 0) k++;
+            }
+            else {
+                printf("\033[44;1m");
+                printf("| %d |", playField[start_i][start_j]);
+                printf("\033[0m");
+            }
+
+        }
+    }
+    *count = k;
+}
+
+void result(int count, int pos_i, int pos_j) {
+    printf("\n");
+
+    setlocale(LC_ALL, "ru_RU.KOI8-R");
+
+    printf(RED);
+    for (int i = 0; i <= 20; i++) {
+        if (!(i % 5) && (i != 0) && (i != 20)) {
+            printf("%c", -53);
+        }
+        else if (i == 0) {
+            printf("%c", -55);
+        }
+        else if (i == 20) { printf("%c", -69); }
+        if (i != 20) { printf("%c", -51); }
+
+    }
+    printf(RESET "\n");
+    printf(RED "%c" RESET  "  %c  " RED "%c" RESET  "  %c  " RED "%c" RESET  "  %c  " RED "%c" RESET "  %c  " RED "%c" RESET, -70, -4, -70, 105, -70, 106, -70, 67, -70);
+
+    printf("\n" RED);
+    for (int i = 0; i <= 20; i++) {
+        if (!(i % 5) && (i != 0) && (i != 20)) {
+            printf("%c", -50);
+        }
+        else if (i == 0) {
+            printf("%c", -52);
+        }
+        else if (i == 20) { printf("%c", -71); }
+        if (i != 20) { printf("%c", -51); }
+    }
+    printf(RESET "\n");
+
+    printf(RESET);
+    printf(RED "%c" RESET  "  %d  " RED "%c" RESET  "  %d  " RED "%c" RESET  "  %d  " RED "%c" RESET "  %d  " RED "%c" RESET "\n", -70, 1, -70, pos_i, -70, pos_j, -70, count, -70);
+
+    printf(RED);
+    for (int i = 0; i <= 20; i++) {
+        if (!(i % 5) && (i != 0) && (i != 20)) {
+            printf("%c", -54);
+        }
+        else if (i == 0) {
+            printf("%c", -56);
+        }
+        else if (i == 20) { printf("%c", -68); }
+        if (i != 20) { printf("%c", -51); }
+    }
+    printf(RESET);
+}
+
+
