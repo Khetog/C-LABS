@@ -1,0 +1,92 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <locale.h>
+#define RED     "\033[0;31m"
+#define RESET   "\033[0m"
+
+int check_size(int N, int M);
+void input_array(int arr[20][20], int N, int M);
+void raschet(int N, int M, int playField[20][20], int start_i, int start_j, int* count, int prog_it);
+void result(int count, int pos_i, int pos_j, int* prog_c);
+
+int main() {
+	int N, M, playField[20][20];
+    int count = 0;
+	printf("Vvodi razmer:");
+	do {
+		scanf("%d %d", &N, &M);
+	} while (!(check_size(N, M)));
+
+	input_array(playField, N, M);
+
+    printf(RED);// Выводим крышку таблицы
+    for (int i = 0; i <= 20; i++) {
+        if (!(i % 5) && (i != 0) && (i != 20)) {
+            printf("%c", -53);
+        }
+        else if (i == 0) {
+            printf("%c", -55);
+        }
+        else if (i == 20) { printf("%c", -69); }
+        if (i != 20) { printf("%c", -51); }
+    }
+
+    printf(RESET "\n");
+    printf(RED "%c" RESET  "  %c  " RED "%c" RESET  "  %c  " RED "%c" RESET  "  %c  " RED "%c" RESET "  %c  " RED "%c" RESET "\n", -70, -4, -70, 105, -70, 106, -70, 67, -70);
+    //Вывели верхнюю часть таблицы
+    for (int prog_it = 1; prog_it < 10; prog_it++) {
+        printf(RED);
+        for (int i = 0; i <= 20; i++) {
+            if (!(i % 5) && (i != 0) && (i != 20)) {
+                printf("%c", -50);
+            }
+            else if (i == 0) {
+                printf("%c", -52);
+            }
+            else if (i == 20) { printf("%c", -71); }
+            if (i != 20) { printf("%c", -51); }
+        }
+        printf(RESET);
+        int start_i, start_j;
+        scanf("%d %d", &start_i, &start_j);
+        raschet(N, M, playField, start_i, start_j, &count, prog_it);
+    }
+}
+
+int check_size(int N, int M) {
+	return ((N > 0 && N < 20) || (M > 0 && M < 20));
+}
+
+void input_array(int arr[20][20], int N, int M) {
+	printf("Input elements of array (NxM):\n");
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			scanf("%d", &arr[i][j]);
+		}
+	}
+}
+
+
+void raschet(int N, int M, int playField[20][20], int start_i, int start_j, int* count, int prog_it) {
+    int k = 0;
+    int pos_i = start_i, pos_j = start_j;
+
+    for (start_i; start_i < N; start_i++) {
+        for (int start_j = 0; start_j < M; start_j++) {
+            if (start_i == 3 && (start_j > 2 && start_i <= 5)) {
+                if (playField[start_i][start_j] >= 0) k++;
+            }
+            else if (start_i > 3 && start_j == 3) {
+                if (playField[start_i][start_j] >= 0) k++;
+            }
+            else if (start_i == 6 && (start_j >= 0 && start_j <= 3)) {
+                if (playField[start_i][start_j] >= 0) k++;
+            }
+            else {
+            }
+
+        }
+    }
+    *count = k;
+    printf(RED "%c" RESET  "  %d  " RED "%c" RESET  "  %d  " RED "%c" RESET  "  %d  " RED "%c" RESET "  %d  " RED "%c" RESET "\n", -70, prog_it, -70, pos_i, -70, pos_j, -70, k, -70);
+}
