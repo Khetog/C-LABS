@@ -1,4 +1,4 @@
-﻿//#define Black \033[0;30m
+//#define Black \033[0;30m
 //#define _CRT_SECURE_NO_WARNINGS
 //#include <stdio.h>
 //#include<locale.h>
@@ -85,6 +85,10 @@
 //		}
 //	}
 //}
+
+//для каждого элемента A(i, j) найти количество выделенных элементов 
+//в выделенной области. Результат представить в виде таблицы. 
+//
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <locale.h>
