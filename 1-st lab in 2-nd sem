@@ -362,7 +362,7 @@ neprroknulo:
         // ограничение ввода маркера, !!!НАЧАЛО!!!
         do {
             scanf("%d %d", &start_i, &start_j);
-            if (start_i > N || start_i < 0 || start_j >M || start_j < 0) {
+            if (start_i > N || start_i <= 0 || start_j > M || start_j <= 0) {
                 return_prog = 0;
                 printf("Mark is outside the field, input mark again \n");
                 goto neprroknulo;
@@ -401,7 +401,7 @@ void raschet(int N, int M, int playField[20][20], int start_i, int start_j, int 
         for (j; j < M; j++) {
             if (i == 3 && (j >= 3 && j <= 5)) { if (playField[i][j] > 0) k++; }
             if (j == 3 && (i >= 4 && i <= 6)) { if (playField[i][j] > 0) k++; }
-            if (i == 6 && (j >= 0 && j <= 3)) { if (playField[i][j] > 0) k++; }
+            if (i == 6 && (j >= 0 && j < 3)) { if (playField[i][j] > 0) k++; }
         }
         // Сбрасываем j на начальное значение для следующей строки
         j = 0;
