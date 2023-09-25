@@ -1,0 +1,61 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+struct stones {
+    char name_[20];
+    int weight_;
+    int age_;
+    char gender_[20];
+
+};
+
+
+int main() {
+    int max_stones = 1;
+    int choice;
+    struct stones database[10];
+    int count_lines_ = 0;
+
+    do {
+        printf("Welcome to stones database ^_^ \nList of commands: \n");
+        printf("1. Input stones database \n2. Output a stone data \n3. Add a stone \n4. Exit\n");
+        scanf("%d", &choice);
+        int num_stone = 1;
+        switch (choice) {
+            case (1):
+                struct stones new_stone;
+                if (num_stone < 11) {
+                    printf("Input stones quantity: ");
+                    scanf("%d", &count_lines_);
+                    printf("stone number is %d ", num_stone);
+                    printf("Enter name of the stone: ");
+                    scanf("%s\n", &new_stone.name_);
+                    printf("Enter weight of the stone: ");
+                    scanf("%d\n", &new_stone.weight_);
+                    printf("Enter age of the stone ");
+                    scanf("%d\n", &new_stone.age_);
+                    printf("Enter gender of the stone: ");
+                    scanf("%s\n", &new_stone.gender_);
+                    num_stone++;
+                }
+            case (2):
+                printf(" Stones:\n");
+                for (int i = 0; i < 11; i++) {
+                    printf("Name: %s ", database[i].name_);
+                    printf("Weight: %d ", database[i].weight_);
+                    printf("Age: %d ", database[i].age_);
+                    printf("Gender: %s ", database[i].gender_);
+                }
+            case (3):
+                if (max_stones > 0) {
+                    struct stones new_stone;
+                    printf("Enter name of the stone");
+                }
+            case (4):
+                printf("Exit");
+                break;
+            default:
+                printf("Invalid choice, enter the correct command\n");
+        }
+    } while (choice != 4);
+}
