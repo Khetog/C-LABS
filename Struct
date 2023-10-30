@@ -1,61 +1,206 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <string.h>
+#include <cctype>
+#include <stdlib.h>
+#include <windows.h>
 
-struct stones {
-    char name_[20];
-    int weight_;
-    int age_;
-    char gender_[20];
-
+struct stone {
+    char name[20];
+    int weight;
+    int age;
+    char gender[20];
 };
+void Complete();
 
+void print_stone(struct stone s) {
+    printf("Name: %s\n", s.name);
+    printf("Weight: %d\n", s.weight);
+    printf("Age: %d\n", s.age);
+    printf("Gender: %s\n \n", s.gender);
+
+}
 
 int main() {
-    int max_stones = 1;
-    int choice;
-    struct stones database[10];
-    int count_lines_ = 0;
+    int max_stones = 10; // Максимальное количество камней
+    struct stone database[10];
+    int num_stones = 0; // Текущее количество камней
 
-    do {
-        printf("Welcome to stones database ^_^ \nList of commands: \n");
-        printf("1. Input stones database \n2. Output a stone data \n3. Add a stone \n4. Exit\n");
+    while (1) {
+        int choice;
+        printf("\nWelcome to stones database ^_^ \nList of commands: \n");
+        printf("1. Add a stone \n2. Add a certain number of stones (No complete) \n3. Edit a stone \n4. Delete a stone \n5. Display all stones \n6. Display a stone \n7.Sort by parameter \n8. Write Data into file (No complete) \n9. Read from file (No complete) \n10. Exit\n");
         scanf("%d", &choice);
-        int num_stone = 1;
+
         switch (choice) {
-            case (1):
-                struct stones new_stone;
-                if (num_stone < 11) {
-                    printf("Input stones quantity: ");
-                    scanf("%d", &count_lines_);
-                    printf("stone number is %d ", num_stone);
+        case 1:
+            system("cls");
+            char input[20];
+            int count;
+
+            do {
+                printf("Enter quantity stones, which you want to add: ");
+                scanf("%s", &input);
+
+                if (isdigit(input[0])) {
+                    count = atoi(input); // Преобразование строки в целое число
+                    break;
+                }
+                else {
+                    printf("Invalid input. Please enter a number.\n");
+                }
+
+            } while (1);
+            if (count <= max_stones) {
+                for (int i = 0; i < count; i++) {
+                    if (num_stones < max_stones) {
+                        struct stone new_stone;
+                        printf("Enter name of the stone: ");
+                        scanf("%s", new_stone.name);
+                        printf("Enter weight of the stone: ");
+                        scanf("%d", &new_stone.weight);
+                        printf("Enter age of the stone: ");
+                        scanf("%d", &new_stone.age);
+                        printf("Enter gender of the stone: ");
+                        scanf("%s", new_stone.gender);
+                        database[num_stones] = new_stone;
+                        num_stones++;
+                        system("cls");
+                    }
+                }
+                Complete();
+
+            }
+            else {
+                printf("Database is full. Cannot add more stones.\n");
+            }
+            break;
+        case 2:
+            system("cls");
+            if (num_stones < max_stones) {
+                struct stone new_stone;
+                printf("Enter name of the stone: ");
+                scanf("%s", new_stone.name);
+                printf("Enter weight of the stone: ");
+                scanf("%d", &new_stone.weight);
+                printf("Enter age of the stone: ");
+                scanf("%d", &new_stone.age);
+                printf("Enter gender of the stone: ");
+                scanf("%s", new_stone.gender);
+                database[num_stones] = new_stone;
+                num_stones++;
+                system("cls");
+                Complete();
+            }
+            else {
+                printf("Database is full. Cannot add more stones.\n");
+            }
+            break;
+        case 3:
+            if (num_stones > 0) {
+                printf("Enter the index of the stone to edit (0-%d): ", num_stones - 1);
+                int index;
+                scanf("%d", &index);
+
+                if (index >= 0 && index < num_stones) {
+                    struct stone updated_stone;
                     printf("Enter name of the stone: ");
-                    scanf("%s\n", &new_stone.name_);
+                    scanf("%s", updated_stone.name);
                     printf("Enter weight of the stone: ");
-                    scanf("%d\n", &new_stone.weight_);
-                    printf("Enter age of the stone ");
-                    scanf("%d\n", &new_stone.age_);
+                    scanf("%d", &updated_stone.weight);
+                    printf("Enter age of the stone: ");
+                    scanf("%d", &updated_stone.age);
                     printf("Enter gender of the stone: ");
-                    scanf("%s\n", &new_stone.gender_);
-                    num_stone++;
+                    scanf("%s", updated_stone.gender);
+                    database[index] = updated_stone;
                 }
-            case (2):
-                printf(" Stones:\n");
-                for (int i = 0; i < 11; i++) {
-                    printf("Name: %s ", database[i].name_);
-                    printf("Weight: %d ", database[i].weight_);
-                    printf("Age: %d ", database[i].age_);
-                    printf("Gender: %s ", database[i].gender_);
+                else {
+                    printf("Invalid index. Please enter a valid index.\n");
                 }
-            case (3):
-                if (max_stones > 0) {
-                    struct stones new_stone;
-                    printf("Enter name of the stone");
+            }
+            else {
+                printf("No stones to edit. Add a stone first.\n");
+            }
+            break;
+
+        case 4:
+            if (num_stones > 0) {
+                printf("Enter the index of the stone to delete (0-%d): ", num_stones - 1);
+                int index;
+                scanf("%d", &index);
+
+
+                if (index >= 0 && index < num_stones) {
+                    for (int i = index; i < num_stones - 1; i++) {
+                        database[i] = database[i + 1];
+                    }
+                    num_stones--;
+                    printf("Stone deleted successfully.\n");
                 }
-            case (4):
-                printf("Exit");
-                break;
-            default:
-                printf("Invalid choice, enter the correct command\n");
+                else {
+                    printf("Invalid index. Please enter a valid index.\n");
+                }
+            }
+            else {
+                printf("No stones to delete. Add a stone first.\n");
+            }
+            break;
+
+        case 5:
+            printf("Stones in the database:\n");
+            for (int i = 0; i < num_stones; i++) {
+                printf("Stone %d:\n", i);
+                print_stone(database[i]);
+            }
+            break;
+
+        case 6:
+            if (num_stones > 0) {
+                printf("Enter the index of the stone to display (0-%d): ", num_stones - 1);
+                int index;
+                scanf("%d", &index);
+
+                if (index >= 0 && index < num_stones) {
+                    printf("Stone %d:\n", index);
+                    print_stone(database[index]);
+                }
+                else {
+                    printf("Invalid index. Please enter a valid index.\n");
+                }
+            }
+            else {
+                printf("No stones to display. Add a stone first.\n");
+            }
+            break;
+        case 8:
+        case 9:
+        case 10:
+            printf("Exiting the program.\n");
+            return 0;
+
+        default:
+            printf("Invalid choice, enter the correct command.\n");
         }
-    } while (choice != 4);
+  }
+  return 0;
+}
+void Complete() {
+    system("cls");
+    int delay_ms = 100;
+    printf("Complete! ");
+    for (int i = 0; i < 3; i++) {
+        printf("| \b");
+        Sleep(delay_ms);
+        printf("\b");
+        printf("/");
+        printf("\b");
+        Sleep(delay_ms);
+        printf("-");
+        printf("\b");
+        Sleep(delay_ms);
+        printf("\\");
+        printf("\b");
+        Sleep(delay_ms);
+    }
+    system("cls");
 }
