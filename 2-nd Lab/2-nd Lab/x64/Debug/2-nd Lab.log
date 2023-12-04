@@ -1,0 +1,3 @@
+﻿  11111.cpp
+C:\progi\laba3sem\2laba\2-nd Lab\2-nd Lab\11111.cpp(164,12): warning C4477: "scanf": в строке форматирования "%d" требуется аргумент типа "int *", но вариативный аргумент "1" имеет тип "int"
+  2-nd Lab.vcxproj -> C:\progi\laba3sem\2laba\2-nd Lab\x64\Debug\2-nd Lab.exe

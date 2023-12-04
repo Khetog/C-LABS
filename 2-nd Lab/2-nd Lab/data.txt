@@ -1,0 +1,6 @@
+John 25 2022 NewYork 150 Male
+Alice 30 2020 Paris 120 Female
+Bob 28 2021 London 180 Male
+Khetog 18 2005 North_Osetia 67 Male
+Bismuth 8233 2520_BC New_Zeland 243 Xui_Znaet
+Obsidian 123 1900 Japan 1543 Negr

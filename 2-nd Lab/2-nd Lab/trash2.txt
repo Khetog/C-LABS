@@ -1,0 +1,4 @@
+John 25 æ NewYork 150 Male
+Alice 30 ä Paris 120 Female
+Bob 28 å London 180 Male
+Khetog 18 Õ North_Osetia 67 Male
